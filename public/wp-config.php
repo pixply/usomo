@@ -14,7 +14,9 @@ if (file_exists(dirname(__FILE__) . '/prod-config.php')) {
     define('WP_LOCAL_DEV', false);
     include(dirname(__FILE__) . '/stage-config.php');
 } elseif (file_exists(dirname(__FILE__) . '/dev-config.php')) {
-    define('WP_LOCAL_DEV', false);
+    @ini_set('display_errors', 1);
+    define('WP_DEBUG', true);
+    define('WP_LOCAL_DEV', true);
     include(dirname(__FILE__) . '/dev-config.php');
 } else {
     @ini_set('display_errors', 1);
