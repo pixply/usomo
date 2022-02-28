@@ -1,0 +1,26 @@
+{
+  "name": "pixply/wordpress-base",
+  "description": "Base wordpress installation",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Philipp Pistecky",
+      "email": "philipp@pistecky.com"
+    }
+  ],
+	"repositories":[
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    }
+  ],
+  "config"      : {
+    "vendor-dir": "public/vendor"
+  },
+  "require": {
+    "johnpbloch/wordpress": ">=5.6",
+    "deliciousbrains-plugin/wp-migrate-db-pro": "^2",
+    "deliciousbrains-plugin/wp-migrate-db-pro-cli": "^1",
+    "deliciousbrains-plugin/wp-migrate-db-pro-media-files": "^2"
+  }
+}

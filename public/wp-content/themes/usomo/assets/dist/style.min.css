@@ -1,0 +1,300 @@
+/*!********************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./assets/src/sass/styles.sass ***!
+  \********************************************************************************************************************************************************************************************/
+body {
+  color: var(--e-global-color-text);
+  font-family: var(--e-global-typography-text-font-family), Sans-serif;
+  font-size: var(--e-global-typography-text-font-size);
+  font-weight: var(--e-global-typography-text-font-weight);
+  line-height: var(--e-global-typography-text-line-height);
+}
+
+h1, .h1 {
+  font-family: var(--e-global-typography-primary-font-family), Sans-serif;
+  font-weight: var(--e-global-typography-primary-font-weight);
+  font-size: var(--e-global-typography-primary-font-size);
+  line-height: var(--e-global-typography-primary-line-height);
+  letter-spacing: var(--e-global-typography-primary-letter-spacing);
+  color: var(--e-global-color-primary);
+}
+
+h3, .h3 {
+  font-family: var(--e-global-typography-8ddd0df-font-family), Sans-serif;
+  font-size: var(--e-global-typography-8ddd0df-font-size);
+  font-weight: var(--e-global-typography-8ddd0df-font-weight);
+  line-height: var(--e-global-typography-8ddd0df-line-height);
+  letter-spacing: var(--e-global-typography-8ddd0df-letter-spacing);
+}
+
+a {
+  color: var(--e-global-color-primary);
+}
+a:hover {
+  color: var(--e-global-color-primary);
+}
+
+.elementor-widget-button .elementor-button-link,
+.elementor-widget-button .elementor-button,
+.elementor-field-type-submit .elementor-button-link,
+.elementor-field-type-submit .elementor-button,
+.elementor-button-wrapper .elementor-button-link,
+.elementor-button-wrapper .elementor-button {
+  background-color: var(--e-global-color-primary);
+  border: 1px solid var(--e-global-color-primary);
+  color: var(--e-global-color-secondary);
+  border-radius: 0;
+  font-size: var(--e-global-typography-text-font-size);
+  padding: 1em 2em;
+  flex-basis: auto !important;
+}
+.elementor-widget-button .elementor-button-link:hover,
+.elementor-widget-button .elementor-button:hover,
+.elementor-field-type-submit .elementor-button-link:hover,
+.elementor-field-type-submit .elementor-button:hover,
+.elementor-button-wrapper .elementor-button-link:hover,
+.elementor-button-wrapper .elementor-button:hover {
+  background-color: var(--e-global-color-secondary);
+  color: var(--e-global-color-text);
+}
+.elementor-widget-button .elementor-button-link.elementor-size-xs,
+.elementor-widget-button .elementor-button.elementor-size-xs,
+.elementor-field-type-submit .elementor-button-link.elementor-size-xs,
+.elementor-field-type-submit .elementor-button.elementor-size-xs,
+.elementor-button-wrapper .elementor-button-link.elementor-size-xs,
+.elementor-button-wrapper .elementor-button.elementor-size-xs {
+  font-size: var(--e-global-typography-47fb2b3-font-size);
+  padding: 0.7em 2em;
+}
+.elementor-widget-button.on-dark .elementor-button-link:hover,
+.elementor-widget-button.on-dark .elementor-button:hover,
+.elementor-field-type-submit.on-dark .elementor-button-link:hover,
+.elementor-field-type-submit.on-dark .elementor-button:hover,
+.elementor-button-wrapper.on-dark .elementor-button-link:hover,
+.elementor-button-wrapper.on-dark .elementor-button:hover {
+  background-color: transparent;
+  color: var(--e-global-color-secondary);
+}
+
+.elementor-form input {
+  padding: 0.5em 0em;
+}
+
+.about-animation .slide {
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.ecs-posts article {
+  cursor: pointer;
+}
+
+.content-modal {
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  padding: 50px 0;
+  cursor: pointer;
+}
+.content-modal__frame {
+  position: relative;
+  margin: 0 auto;
+  height: 100%;
+  width: 90%;
+  padding: 100px 0px 50px;
+  background: #ECECEC;
+  cursor: default;
+  max-width: 880px;
+}
+.content-modal__close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  background: center/contain no-repeat url(../img/close.png);
+  cursor: pointer;
+}
+.content-modal__spinner {
+  position: absolute;
+  left: calc(50% - 20px);
+  top: calc(50% - 20px);
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  background: center/contain no-repeat url(../img/spinner.png);
+  animation: pulses 2s infinite;
+}
+.content-modal__content {
+  height: 100%;
+  overflow-y: scroll;
+}
+.content-modal__content h3 {
+  color: var(--e-global-color-text);
+}
+.content-modal__content p {
+  color: var(--e-global-color-text);
+}
+.content-modal__title, .content-modal__text {
+  padding: 0 50px;
+}
+
+.project-slider.multiple .project-slider__project {
+  cursor: pointer;
+}
+.project-slider h3 {
+  color: var(--e-global-color-secondary);
+}
+body[data-elementor-device-mode=desktop] .project-slider h3 {
+  width: 60%;
+}
+.project-slider__project__title {
+  margin-top: 100px;
+}
+.project-slider.multiple .project-slider__project .project-slider__project__content {
+  position: absolute;
+  bottom: 0;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.project-slider.multiple .project-slider__project .project-slider__project__content .project-slider__project__title {
+  margin-top: 0;
+}
+.project-slider.multiple .project-slider__project:hover .project-slider__project__content {
+  opacity: 1;
+}
+.project-slider__project__excerpt {
+  color: var(--e-global-color-secondary);
+}
+body[data-elementor-device-mode=desktop] .project-slider__project__excerpt {
+  width: 60%;
+}
+
+.slick-dots {
+  margin: 50px 0 0 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+.slick-dots li {
+  margin-right: 10px;
+}
+.slick-dots li .dot {
+  padding: 0;
+  height: 4px;
+  width: 30px;
+  border: none;
+  background-color: var(--e-global-color-secondary);
+  text-indent: -9999px;
+  cursor: pointer;
+  transition: background-color 0.5s, width 0.5s;
+}
+.slick-dots li:last-of-type {
+  margin-right: 0;
+}
+.slick-dots li.slick-active .dot {
+  background-color: var(--e-global-color-primary);
+  width: 50px;
+}
+
+.slick-arrow {
+  position: absolute;
+  top: 40%;
+  z-index: 10;
+  width: 20px;
+  height: 35px;
+  cursor: pointer;
+}
+.slick-arrow.prev {
+  left: 20px;
+  background: center/contain no-repeat url(../img/prev.png);
+}
+.slick-arrow.next {
+  right: 20px;
+  background: center/contain no-repeat url(../img/next.png);
+}
+
+@keyframes pulses {
+  0% {
+    transform: scale(0.8);
+  }
+  70% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+.menu-toggle {
+  cursor: pointer;
+}
+
+.magic-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0%;
+  display: none;
+  z-index: 9;
+}
+.magic-menu .wrapper {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.magic-menu__underlay {
+  width: 100%;
+  height: 0%;
+  background-color: var(--e-global-color-primary);
+}
+.magic-menu__background {
+  width: 100%;
+  height: 0%;
+  background-color: var(--e-global-color-e41f970);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.magic-menu .main-menu .menu-wrapper {
+  display: flex;
+  align-items: center;
+}
+.magic-menu .main-menu ul {
+  margin: 0;
+  padding: 0;
+}
+.magic-menu .main-menu ul li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.magic-menu .main-menu ul li a {
+  color: var(--e-global-color-secondary);
+  font-size: 10vh;
+  font-weight: bold;
+  line-height: 1.3;
+  transition: color 0.3s;
+}
+.magic-menu .main-menu ul li a:hover {
+  color: var(--e-global-color-primary);
+}
+.magic-menu .info {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=style.min.css.map*/
