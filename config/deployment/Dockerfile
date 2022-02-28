@@ -149,6 +149,7 @@ RUN npm install
 RUN npm run build
 
 # Move public directory to /var/www/html
+WORKDIR /usr/src/build
 RUN cp -a public/. /var/www/html/; \
 	chown -R www-data:www-data /var/www/html
 
