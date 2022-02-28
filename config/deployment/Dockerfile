@@ -119,7 +119,8 @@ WORKDIR /usr/src/build
 RUN cp auth.json /root/.composer
 RUN composer global config repositories.delicious-brains '{ "type": "composer", "url": "https://composer.deliciousbrains.com" }'
 RUN composer global require "deliciousbrains-plugin/wp-migrate-db-pro"
-RUN composer global require "deliciousbrains-plugin/wp-migrate-db-pro-cli"
+RUN composer global require "deliciousbrains-plugin/wp-migrate-db-pro-media-files"
+RUN composer global require "deliciousbrains-plugin/wp-migrate-db-pro-theme-plugin-files"
 RUN composer install
 
 ARG WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}

@@ -32,9 +32,9 @@ services:
       - ./mysql_data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      MYSQL_DATABASE: "${MYSQL_NAME}"
-      MYSQL_USER: "${MYSQL_USER}"
-      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: "${WORDPRESS_DB_NAME}"
+      MYSQL_USER: "${WORDPRESS_DB_USER}"
+      MYSQL_PASSWORD: "${WORDPRESS_DB_PASSWORD}"
 
   wpcli:
     image: wordpress:cli
