@@ -86,10 +86,6 @@ a:hover {
   align-content: center;
 }
 
-.ecs-posts article {
-  cursor: pointer;
-}
-
 .content-modal {
   position: fixed;
   top: 0;
@@ -143,9 +139,6 @@ a:hover {
   padding: 0 50px;
 }
 
-.project-slider.multiple .project-slider__project {
-  cursor: pointer;
-}
 .project-slider h3 {
   color: var(--e-global-color-secondary);
 }
@@ -160,14 +153,11 @@ body[data-elementor-device-mode=desktop] .project-slider h3 {
   bottom: 0;
   padding: 30px;
   background: rgba(0, 0, 0, 0.2);
-  opacity: 0;
   transition: opacity 0.3s;
+  width: 100%;
 }
 .project-slider.multiple .project-slider__project .project-slider__project__content .project-slider__project__title {
   margin-top: 0;
-}
-.project-slider.multiple .project-slider__project:hover .project-slider__project__content {
-  opacity: 1;
 }
 .project-slider__project__excerpt {
   color: var(--e-global-color-secondary);
@@ -202,6 +192,14 @@ body[data-elementor-device-mode=desktop] .project-slider__project__excerpt {
 .slick-dots li.slick-active .dot {
   background-color: var(--e-global-color-primary);
   width: 50px;
+}
+
+.projekt-template-default .slick-dots li:not(.slick-active) .dot {
+  background-color: #ECECEC;
+}
+
+.slick-slide img {
+  width: 100%;
 }
 
 .slick-arrow {
@@ -295,6 +293,112 @@ body[data-elementor-device-mode=desktop] .project-slider__project__excerpt {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.experience-animation {
+  position: relative;
+}
+
+.experience-animation h1 {
+  width: min(100vw, 100%);
+  text-align: center;
+  position: absolute;
+  top: calc(50% - 40vh);
+  left: 0;
+}
+
+.experience-animation .slide {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+}
+
+.experience-animation .container {
+  width: 100%;
+  height: 100vh;
+  max-width: 1140px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.experience-animation .animation {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+}
+
+.experience-animation .animation .fixed {
+  width: 100vw;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.experience-animation .animation .headphones {
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  left: 0;
+}
+
+.experience-animation .animation .headphones video {
+  width: clamp(200px, 45px + 31.25vw, 400px);
+}
+
+.experience-animation .animation .ani {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  overflow: hidden;
+}
+
+.experience-animation .animation .ani1 {
+  z-index: 4;
+  background-color: #fff;
+}
+
+.experience-animation .animation .ani2 {
+  z-index: 3;
+  background-color: #e63911;
+}
+
+.experience-animation .animation .ani3 {
+  z-index: 2;
+  background: url("/wp-content/uploads/2022/04/background_experience_1-scaled.jpg") 0 0/cover;
+}
+
+.experience-animation .animation .ani4 {
+  z-index: 1;
+  background: url("/wp-content/uploads/2022/04/background_experience_2-scaled.jpg") 0 0/cover;
+}
+
+.experience-animation .content {
+  z-index: 2;
+  position: relative;
+}
+
+.experience-animation .content .slide .container {
+  justify-content: flex-end;
+  align-items: center;
+  padding: 30px;
+  display: flex;
+}
+
+.experience-animation .content .slide .text {
+  width: 45%;
+  color: #fff;
+  font-size: 20px;
+  line-height: 30px;
+  right: 10%;
+}
+
+.experience-animation .content .slide:last-child .container {
+  justify-content: flex-start;
 }
 
 /*# sourceMappingURL=style.min.css.map*/

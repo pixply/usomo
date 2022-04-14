@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 (function ($) {
   let $mainMenu = $(".main-menu");
@@ -134,8 +135,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
     slidesToScroll: 1,
     dots: true,
     arrows: false,
-    autoplay: false,
-    autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 3000,
     fade: true,
     customPaging: function (slider, i) {
       return $('<div class="dot"  />');
@@ -196,7 +197,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
           nextArrow: '<div class="arrow next"></div>',
           prevArrow: '<div class="arrow prev"></div>',
           autoplay: true,
-          autoplaySpeed: 5000,
+          autoplaySpeed: 3000,
           fade: true,
           customPaging: function (slider, i) {
             return $('<div class="dot"  />');
@@ -206,31 +207,106 @@ import ScrollTrigger from "gsap/ScrollTrigger";
     });
   }
 
-  $(".ecs-posts article").on("click", function (e) {
-    e.preventDefault();
-    var postid = $(this).attr("id").split("-")[1];
-    var posttype = $(this)
-      .attr("class")
-      .match(/type[\w-]*\b/)[0]
-      .split("-")[1];
-    openModal(posttype, postid);
-  });
+  // $(".ecs-posts article").on("click", function (e) {
+  //   e.preventDefault();
+  //   var postid = $(this).attr("id").split("-")[1];
+  //   var posttype = $(this)
+  //     .attr("class")
+  //     .match(/type[\w-]*\b/)[0]
+  //     .split("-")[1];
+  //   openModal(posttype, postid);
+  // });
 
-  $(".project-slider.multiple .project-slider__project").on("click", function (e) {
-    e.preventDefault();
-    var postid = $(this).attr("data-post").split("-")[1];
-    var posttype = "projekt";
-    openModal(posttype, postid);
-  });
+  // $(".project-slider.multiple .project-slider__project").on("click", function (e) {
+  //   e.preventDefault();
+  //   var postid = $(this).attr("data-post").split("-")[1];
+  //   var posttype = "projekt";
+  //   openModal(posttype, postid);
+  // });
 
   // look for later ajax loaded elements
-  $(".modal-popup .ecs-posts").on("DOMSubtreeModified", function (e) {
-    if (e.target.innerHTML.length > 0) {
-      $(".modal-popup article").on("click", function (e) {
-        e.preventDefault();
-        var postid = $(this).attr("id").split("-")[1];
-        openModal("projekt", postid);
-      });
-    }
-  });
+  // $(".modal-popup .ecs-posts").on("DOMSubtreeModified", function (e) {
+  //   if (e.target.innerHTML.length > 0) {
+  //     $(".modal-popup article").on("click", function (e) {
+  //       e.preventDefault();
+  //       var postid = $(this).attr("id").split("-")[1];
+  //       openModal("projekt", postid);
+  //     });
+  //   }
+  // });
+
+  if (document.querySelector(".experience-animation") !== null) {
+    let targets = gsap.utils.toArray(".ani");
+
+    targets.forEach((ani, i) => {
+      // not the last slide
+      if (i + 1 < targets.length) {
+        gsap.to(ani, {
+          autoAlpha: 0,
+          scrollTrigger: {
+            trigger: ".slide" + (i + 1),
+            start: "center center",
+            stop: "center bottom",
+            scrub: true,
+          },
+        });
+      }
+    });
+
+    let video = document.querySelector(".headphones video");
+
+    let tl = gsap.timeline({
+      defaults: { duration: 1 },
+      scrollTrigger: {
+        trigger: ".experience-animation",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    });
+
+    //https://greensock.com/forums/topic/25730-scrub-through-video-smoothly-scrolltrigger/
+    tl.fromTo(
+      video,
+      {
+        currentTime: 0,
+      },
+      {
+        currentTime: video.duration || 1,
+      }
+    );
+
+    let tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".experience-animation",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true,
+      },
+    });
+
+    tl2.to(video, {
+      x: 0,
+      duration: 1,
+    });
+
+    tl2.to(video, {
+      x: "-50%",
+      duration: 2,
+    });
+    tl2.to(video, {
+      x: "-50%",
+      duration: 8,
+    });
+
+    tl2.to(video, {
+      x: "50%",
+      duration: 2,
+    });
+
+    tl2.to(video, {
+      x: "50%",
+      duration: 2,
+    });
+  }
 })(jQuery);

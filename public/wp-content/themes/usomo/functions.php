@@ -34,3 +34,5 @@ function usomo_enqueue_scripts()
   wp_enqueue_script('usomo-script', get_stylesheet_directory_uri()  . '/assets/dist/script.min.js', ['jquery', 'slick-carousel-script'], false, true);
 }
 add_action('wp_enqueue_scripts', 'usomo_enqueue_scripts', 20);
+
+add_image_size('project-slider', 2160, 1440, true);

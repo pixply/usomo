@@ -76,6 +76,7 @@ class ProjectSlider extends Widget_Base
         'options' => [
           'default' => 'Latest Project',
           'multiple' => 'Multiple Project',
+          'current' => 'Current Project',
         ],
         'default' => 'default',
       ]
@@ -100,15 +101,29 @@ class ProjectSlider extends Widget_Base
 
     foreach ($result as $id => $post) {
       $array = (array) $post;
-      $array['pictures'][] = get_field('bild_1', $post->ID);
-      $array['pictures'][] = get_field('bild_2', $post->ID);
-      $array['pictures'][] = get_field('bild_3', $post->ID);
+      $array['pictures'] = $this->loadPictures($post->ID);
+      // $array['pictures'][] = get_field('bild_1', $post->ID);
+      // $array['pictures'][] = get_field('bild_2', $post->ID);
+      // $array['pictures'][] = get_field('bild_3', $post->ID);
       array_push($posts, $array);
     }
 
     wp_reset_postdata();
 
     return $posts;
+  }
+
+  protected function loadPictures($post_id)
+  {
+    $acf_pics = acf_get_fields('group_61a7793a266db'); // Hardcoded ID of the "Bilder" group
+    $pictures = array();
+    foreach ($acf_pics as $key => $value) {
+      $picture = get_field($value['name'], $post_id);
+      if ($picture) {
+        $pictures[] = $picture;
+      }
+    }
+    return $pictures;
   }
 
   protected function render()
@@ -125,37 +140,59 @@ class ProjectSlider extends Widget_Base
           <div class="project-slider__project__pictures slider">
             <?php foreach ($post['pictures'] as $picture) : ?>
               <div class="project-slider__project__pictures__picture slide">
-                <?php echo wp_get_attachment_image($picture['ID'], 'full'); ?>
+                <a href="<?= get_permalink($post['ID']) ?>">
+                  <?php echo wp_get_attachment_image($picture['ID'], 'project-slider'); ?>
+                </a>
               </div>
             <?php endforeach; ?>
           </div>
-          <div class="project-slider__project__title">
-            <h3><?php echo $post['post_title']; ?></h3>
-          </div>
-          <div class="project-slider__project__excerpt">
-            <?php echo get_the_excerpt($post['ID']); ?>
-          </div>
+          <a href="<?= get_permalink($post['ID']) ?>">
+            <div class="project-slider__project__title">
+              <h3><?php echo $post['post_title']; ?></h3>
+            </div>
+            <div class="project-slider__project__excerpt">
+              <?php echo get_the_excerpt($post['ID']); ?>
+            </div>
+          </a>
         </div>
+        <?php
 
-      <?php
-
+      } elseif ($settings['slider_type'] === 'current') {
+        $post = (array) get_queried_object();
+        $pictures = $this->loadPictures($post['ID']);
+        if (count($pictures) > 0) {
+          $post['pictures'] = $pictures;
+        ?>
+          <div class="project-slider__project" data-post="<?php echo 'post-' . $post['ID'] ?>">
+            <div class="project-slider__project__pictures slider">
+              <?php foreach ($post['pictures'] as $picture) : ?>
+                <div class="project-slider__project__pictures__picture slide">
+                  <?php echo wp_get_attachment_image($picture['ID'], 'project-slider'); ?>
+                </div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+        <?php
+        }
       } elseif ($settings['slider_type'] === 'multiple') {
         $posts = $this->loadPosts($settings['amount']);
-      ?>
+        ?>
         <div class="slider">
           <?php foreach ($posts as $post) : ?>
             <div class="project-slider__project" data-post="<?php echo 'post-' . $post['ID'] ?>">
-              <div class="project-slider__project__picture">
-                <?php echo wp_get_attachment_image($post['pictures'][0]['ID'], 'full'); ?>
-              </div>
-              <div class="project-slider__project__content">
-                <div class="project-slider__project__title">
-                  <h3><?php echo $post['post_title']; ?></h3>
+              <a href="<?= get_permalink($post['ID']) ?>">
+                <div class="project-slider__project__picture">
+                  <?php echo wp_get_attachment_image($post['pictures'][0]['ID'], 'full'); ?>
                 </div>
-                <div class="project-slider__project__excerpt">
-                  <?php echo get_the_excerpt($post['ID']); ?>
+                <div class="project-slider__project__content">
+                  <div class="project-slider__project__title">
+                    <h3><?php echo $post['post_title']; ?></h3>
+                  </div>
+                  <div class="project-slider__project__excerpt">
+                    <?php echo get_the_excerpt($post['ID']); ?>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
           <?php endforeach; ?>
         </div>
