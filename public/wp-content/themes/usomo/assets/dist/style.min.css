@@ -346,7 +346,7 @@ body[data-elementor-device-mode=desktop] .project-slider__project__excerpt {
   left: 0;
 }
 
-.experience-animation .animation .headphones video {
+.experience-animation .animation .headphones .video {
   width: clamp(200px, 45px + 31.25vw, 400px);
 }
 

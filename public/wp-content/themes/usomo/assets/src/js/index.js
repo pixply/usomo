@@ -236,6 +236,8 @@ gsap.registerPlugin(ScrollTrigger);
   // });
 
   if (document.querySelector(".experience-animation") !== null) {
+    let img = document.querySelector(".experience-animation .video");
+
     let targets = gsap.utils.toArray(".ani");
 
     targets.forEach((ani, i) => {
@@ -253,7 +255,45 @@ gsap.registerPlugin(ScrollTrigger);
       }
     });
 
-    let video = document.querySelector(".headphones video");
+    if (document.querySelector(".experience-animation")) {
+      let frameCount = 79;
+      const currentFrame = (index) => `/wp-content/themes/usomo/assets/img/animation/frame_${(index + 1).toString().padStart(5, "0")}.png`;
+
+      let images = [];
+      let animation = {
+        frame: 0,
+      };
+
+      for (let i = 0; i < frameCount; i++) {
+        let img = new Image();
+        img.src = currentFrame(i);
+        images.push(img);
+      }
+
+      gsap
+        .timeline({
+          onUpdate: render,
+          scrollTrigger: {
+            trigger: ".experience-animation",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.5,
+          },
+        })
+        .to(animation, {
+          frame: frameCount - 1,
+          snap: "frame",
+          ease: "none",
+          duration: 1,
+        });
+
+      function render() {
+        console.log(animation.frame);
+        img.src = currentFrame(animation.frame);
+      }
+    }
+
+    let video = document.querySelector(".headphones .video");
 
     let tl = gsap.timeline({
       defaults: { duration: 1 },
@@ -265,16 +305,16 @@ gsap.registerPlugin(ScrollTrigger);
       },
     });
 
-    //https://greensock.com/forums/topic/25730-scrub-through-video-smoothly-scrolltrigger/
-    tl.fromTo(
-      video,
-      {
-        currentTime: 0,
-      },
-      {
-        currentTime: video.duration || 1,
-      }
-    );
+    // //https://greensock.com/forums/topic/25730-scrub-through-video-smoothly-scrolltrigger/
+    // tl.fromTo(
+    //   video,
+    //   {
+    //     currentTime: 0,
+    //   },
+    //   {
+    //     currentTime: video.duration || 1,
+    //   }
+    // );
 
     let tl2 = gsap.timeline({
       scrollTrigger: {
