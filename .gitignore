@@ -3,7 +3,7 @@ install.sql
 public/vendor
 public/wp
 public/wp-content/*
-!public/wp-content/themes/usomo/footer.php
+!public/wp-content/themes/usomo/
 public/*-config.php
 mysql_data
 composer.lock
