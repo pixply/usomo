@@ -4,6 +4,11 @@ public/vendor
 public/wp
 public/wp-content/*
 !public/wp-content/themes/usomo/
+!public/wp-content/themes/usomo/*
+!public/wp-content/themes/usomo/*/*
+!public/wp-content/themes/usomo/*/*/*
+!public/wp-content/themes/usomo/*/*/*/*
+!public/wp-content/themes/usomo/*/*/*/*/*
 public/*-config.php
 mysql_data
 composer.lock
