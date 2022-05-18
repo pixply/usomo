@@ -35,7 +35,8 @@ jobs:
           ssh_password: ${{ secrets.DEPLOY_PASS_PROD }}
           local_path: "./public/*"
           remote_path: "${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }}"
-          args: "-o ConnectTimeout=5"
+          port: 22
+          args: "-vvv -o ConnectTimeout=5"
 
       - name: symlink directories and delete old releases while keeping last 5
         uses: appleboy/ssh-action@v0.0.7
