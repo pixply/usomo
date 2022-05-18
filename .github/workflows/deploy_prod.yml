@@ -34,7 +34,7 @@ jobs:
           host: "${{ secrets.DEPLOY_HOST_PROD }}"
           password: ${{ secrets.DEPLOY_PASS_PROD }}
           localDir: "public"
-          remoteDir: "${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }}"
+          remoteDir: "htdocs/website/releases/${{ github.sha }}"
 
       - name: symlink directories and delete old releases while keeping last 5
         uses: appleboy/ssh-action@v0.0.7
