@@ -255,6 +255,7 @@ gsap.registerPlugin(ScrollTrigger);
       }
     });
 
+    // https://codepen.io/GreenSock/pen/oNGQMEm
     if (document.querySelector(".experience-animation")) {
       let frameCount = 79;
       const currentFrame = (index) => `/wp-content/themes/usomo/assets/img/animation/frame_${(index + 1).toString().padStart(5, "0")}.png`;

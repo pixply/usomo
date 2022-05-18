@@ -28,15 +28,13 @@ jobs:
             mkdir ${{ github.sha }}
 
       - name: deploy files
-        uses: LubricantJam/SFTP-Deploy-Action@v2.1
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
-          username: "${{ secrets.DEPLOY_USER_PROD }}"
-          server: "${{ secrets.DEPLOY_HOST_PROD }}"
-          ssh_password: ${{ secrets.DEPLOY_PASS_PROD }}
-          local_path: "./public/*"
-          remote_path: "${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }}"
-          port: 22
-          args: "-vvv -o ConnectTimeout=5"
+          user: "${{ secrets.DEPLOY_USER_PROD }}"
+          host: "${{ secrets.DEPLOY_HOST_PROD }}"
+          password: ${{ secrets.DEPLOY_PASS_PROD }}
+          localDir: "./public/*"
+          remoteDir: "${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }}"
 
       - name: symlink directories and delete old releases while keeping last 5
         uses: appleboy/ssh-action@v0.0.7
