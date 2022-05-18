@@ -1,0 +1,53 @@
+name: Deploy on prod
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.1.0
+
+      - name: Composer Install
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
+
+      - name: prepare directory
+        uses: appleboy/ssh-action@v0.0.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST_PROD }}
+          username: ${{ secrets.DEPLOY_USER_PROD }}
+          password: ${{ secrets.DEPLOY_PASS_PROD }}
+          port: 22
+          script: |
+            cd ${{ secrets.DEPLOY_PATH_PROD }}/releases
+            mkdir ${{ github.sha }}
+
+      - name: deploy files
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: "${{ secrets.DEPLOY_USER_PROD }}"
+          server: "${{ secrets.DEPLOY_HOST_PROD }}"
+          ssh_password: ${{ secrets.DEPLOY_PASS_PROD }}
+          local_path: "./public/*"
+          remote_path: "${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }} "
+          args: "-o ConnectTimeout=5"
+
+      - name: symlink directories and delete old releases while keeping last 5
+        uses: appleboy/ssh-action@v0.0.7
+        with:
+          host: ${{ secrets.DEPLOY_HOST_PROD }}
+          username: ${{ secrets.DEPLOY_USER_PROD }}
+          password: ${{ secrets.DEPLOY_PASS_PROD }}
+          port: 22
+          script: |
+            ln -s ${{ secrets.DEPLOY_PATH_PROD }}/uploads ${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }}/wp-content/uploads
+            rm -rf ${{ secrets.DEPLOY_PATH_PROD }}/current
+            ln -s ${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }} ${{ secrets.DEPLOY_PATH_PROD }}/current
+            ln -s ${{ secrets.DEPLOY_PATH_PROD }}/prod-config.php ${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }}/prod-config.php
+            cd ${{ secrets.DEPLOY_PATH_PROD }}/releases
+            rm -rf `ls -t | tail -n +6`
