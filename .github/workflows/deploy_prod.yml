@@ -3,7 +3,7 @@ name: Deploy on prod
 on:
   push:
     branches:
-      - master
+      - notworkingbecausenosshkeypossibleoncheaphoster
 
 jobs:
   build:
@@ -35,6 +35,7 @@ jobs:
           password: ${{ secrets.DEPLOY_PASS_PROD }}
           localDir: "public"
           remoteDir: "htdocs/website/releases/${{ github.sha }}"
+          options: "--verbose"
 
       - name: symlink directories and delete old releases while keeping last 5
         uses: appleboy/ssh-action@v0.0.7
