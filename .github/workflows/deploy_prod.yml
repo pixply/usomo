@@ -28,13 +28,13 @@ jobs:
             mkdir ${{ github.sha }}
 
       - name: deploy files
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        uses: LubricantJam/SFTP-Deploy-Action@v2.1
         with:
           username: "${{ secrets.DEPLOY_USER_PROD }}"
           server: "${{ secrets.DEPLOY_HOST_PROD }}"
           ssh_password: ${{ secrets.DEPLOY_PASS_PROD }}
           local_path: "./public/*"
-          remote_path: "${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }} "
+          remote_path: "${{ secrets.DEPLOY_PATH_PROD }}/releases/${{ github.sha }}"
           args: "-o ConnectTimeout=5"
 
       - name: symlink directories and delete old releases while keeping last 5
